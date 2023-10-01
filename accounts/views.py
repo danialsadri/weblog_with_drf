@@ -20,7 +20,7 @@ class UserRegisterView(APIView):
 
 class EditUserView(APIView):
     def put(self, request: Request):
-        user_serializer = EditUserSerializer(instance=request.user, data=request.data, partial=True)
+        user_serializer = EditUserSerializer(instance=request.user, data=request.data, context={'request': request}, partial=True)
         if user_serializer.is_valid():
             user_serializer.save()
             return Response(data=user_serializer.data, status=status.HTTP_200_OK)
