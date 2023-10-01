@@ -9,3 +9,12 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'phone_number': {'required': True}, 'email': {'required': True},
         }
+
+
+class EditUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'phone_number', 'first_name', 'last_name', 'biography', 'photo']
+        extra_kwargs = {
+            'image': {'required': False},
+        }
