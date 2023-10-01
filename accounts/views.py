@@ -25,3 +25,9 @@ class EditUserView(APIView):
             user_serializer.save()
             return Response(data=user_serializer.data, status=status.HTTP_200_OK)
         return Response(data=user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserLogoutView(APIView):
+    def get(self, request: Request):
+        request.auth.delete()
+        return Response(data={'message': 'you logged out successfully'}, status=status.HTTP_204_NO_CONTENT)
